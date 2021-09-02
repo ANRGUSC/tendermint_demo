@@ -1,3 +1,0 @@
-requests
-pyyaml
-# git+ssh://git@github.com/ANRGUSC/python_trinity_api.git
