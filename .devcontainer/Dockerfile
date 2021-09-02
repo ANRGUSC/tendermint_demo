@@ -16,3 +16,5 @@ USER codespace
 COPY ./requirements.txt ./requirements.txt
 RUN /opt/conda/bin/pip install -r ./requirements.txt
 RUN conda init bash
+RUN gh repo clone ANRGUSC/py-abci && /opt/conda/bin/pip install -e ./py-abci
+WORKDIR $HOME/app
