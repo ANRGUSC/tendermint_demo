@@ -1,3 +1,3 @@
 requests
 pyyaml
-git+ssh://git@github.com/ANRGUSC/py-abci.git
+# git+ssh://git@github.com/ANRGUSC/python_trinity_api.git

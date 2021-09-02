@@ -4,6 +4,7 @@ RUN wget -O tendermint.zip https://github.com/tendermint/tendermint/releases/dow
     unzip ./tendermint.zip -d /usr/local/bin/
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
     bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/miniconda3 && \
-    $HOME/miniconda3/bin/conda init bash
-COPY ./requiremets.txt ./requirements.txt 
-RUN pip install -r requirements.txt 
+    $HOME/miniconda3/bin/conda init bash 
+    
+COPY ./requirements.txt ./requirements.txt
+RUN $HOME/miniconda3/bin/pip install -r ./requirements.txt
