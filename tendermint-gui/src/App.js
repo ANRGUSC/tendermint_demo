@@ -4,16 +4,20 @@ import './App.css';
 
 // import Websocket from 'react-websocket';
 // import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 
 import useWebSocket from 'react-use-websocket';
 
-
-const ENDPOINT = 'jaredraycoleman-anrgusc-tendermint-demo-9qq4r64jhxwq6-26657.githubpreview.dev';
+const ENDPOINT = `${process.env.REACT_APP_CODESPACE_NAME}-26657.githubpreview.dev`;
 const instance = axios.create({
   baseURL: `https://${ENDPOINT}`,
-  timeout: 1000,
+  // timeout: 1000,
   withCredentials: true,
   // headers: {'X-Custom-Header': 'foobar'}
 });
@@ -21,8 +25,9 @@ const instance = axios.create({
 const WS_ENDPOINT = `wss://${ENDPOINT}/websocket`;
 
 
-const TendermintWebsocket = () => {
-  const state = {};
+const TendermintWebsocket = (props) => {
+  const [ blocks, setBlocks ] = useState([]);
+  const [ height, setHeight ] = useState(0);
   const {
     sendMessage,
     sendJsonMessage,
@@ -47,9 +52,18 @@ const TendermintWebsocket = () => {
       let data = JSON.parse(res.data);
 
       try {
-        console.log(data.result.data.value.block.header.height);
+        setBlocks([
+          (
+            <div>
+              <b>{data.result.data.value.block.header.height}</b>
+              <p>{data.result.data.value.block.header.last_block_id.hash.slice(0, 5)}</p>
+            </div>
+          ), 
+          ...blocks.slice(0, props.length-1 || 5)]
+        );
+        setHeight(data.result.data.value.block.header.height);
       } catch (error) {
-        
+        console.log(error);
       }
     },
     //Will attempt to reconnect on all close events, such as server shutting down
@@ -59,7 +73,12 @@ const TendermintWebsocket = () => {
 
   return (
     <div>
-
+      <h3>Height: {height}</h3>
+      <ListGroup horizontal>
+        {blocks.map((block, i) => {
+          return <ListGroupItem key={i}>{block}</ListGroupItem>;
+        })}
+      </ListGroup>
     </div>
   );
 }
@@ -77,28 +96,21 @@ class App extends React.Component {
   }
 
   render() {
-    instance.get("/block?height=4").then(res => {
+    instance.get("/net_info").then(res => {
       console.log(res.data);
     });
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <TendermintWebsocket /> 
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Container>
+        <Row>
+          <Col><h1>Blockchain Visualizer</h1></Col>
+        </Row>
+        <Row>
+          <Col>
+            <TendermintWebsocket length={10} /> 
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
