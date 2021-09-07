@@ -2,9 +2,11 @@ import pathlib
 import shutil 
 import subprocess
 import toml
+import os 
 
 thisdir = pathlib.Path(__file__).resolve().parent
 home = pathlib.Path.home()
+CODESPACE_NAME = os.environ["CODESPACE_NAME"]
 
 def main():
     tendermint = home.joinpath(".tendermint")
@@ -16,7 +18,7 @@ def main():
     config_path = tendermint.joinpath("config", "config.toml")
     config = toml.loads(config_path.read_text())
     config["rpc"]["cors_allowed_origins"] = [
-        "https://jaredraycoleman-anrgusc-tendermint-demo-9qq4r64jhxwq6-3000.githubpreview.dev"
+        f"https://{CODESPACE_NAME}-3000.githubpreview.dev"
     ]
     config_path.write_text(toml.dumps(config))
 
