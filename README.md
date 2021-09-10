@@ -1,8 +1,11 @@
 # Tendermint Demo
 
-Open with Codespaces (see the "Code" button above) or in VSCode on your PC!
+Open with:
+- [Gitpod](gitpod.io/#https://github.com/ANRGUSC/tendermint_demo) (recommended)
+- Codespaces (see the "Code" button above)
+- VSCode on your PC (see next section)
 
-## Setting up VSCode
+## Running on VSCode Desktop (Skip this section if you're using codespaces or gitpod)
 1. Make sure you have [VSCode](https://code.visualstudio.com/) and [Docker](https://docs.docker.com/get-docker/) installed
 1. Install the following extensions
     - Remote Development
