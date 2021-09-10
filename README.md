@@ -48,3 +48,9 @@ python client.py set hello toast!
 python client.py get hello
 ```
 
+Finally, we have a small GUI to visualize the blockchain, run:
+```bash
+cd tendermint-gui
+yarn start 
+```
+
