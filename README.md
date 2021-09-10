@@ -1,7 +1,7 @@
 # Tendermint Demo
 
 Open with:
-- [Gitpod, by clicking here](gitpod.io/#https://github.com/ANRGUSC/tendermint_demo) (recommended)
+- [Gitpod, by clicking here](https://gitpod.io/#https://github.com/ANRGUSC/tendermint_demo) (recommended)
 - Codespaces (see the "Code" button above)
 - VSCode on your PC (see next section)
 
