@@ -1,6 +1,6 @@
 # Tendermint Demo
 
-Open with Codespaces or in VSCode on your PC!
+Open with Codespaces (see the "Code" button above) or in VSCode on your PC!
 
 ## Setting up VSCode
 1. Make sure you have [VSCode](https://code.visualstudio.com/) and [Docker](https://docs.docker.com/get-docker/) installed
