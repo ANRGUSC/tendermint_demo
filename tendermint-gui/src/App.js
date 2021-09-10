@@ -71,7 +71,6 @@ const TendermintWebsocket = (props) => {
     <div>
       <ListGroup horizontal>
         {blocks.map((block, i) => {
-          // console.log(block);
           return (
             <ListGroupItem action key={block.header.height} onClick={() => props.onClick ? props.onClick(block) : null}>
                 <b>Block # {block.header.height}</b>
@@ -89,7 +88,6 @@ const toTable = (obj) => {
     <Table responsive>
       <tbody>
         {Object.entries(obj).filter(([key, value]) => typeof value === 'string').map(([key, value]) => {
-          console.log(key, value);
           return (
             <tr key={key}>
               <td>{key}</td>
@@ -106,12 +104,11 @@ const toTable = (obj) => {
 const App = (props) => {
   const [block, setBlock] = useState({});
 
-  instance.get("/net_info", {withCredentials: true}).then(res => {
-    console.log(res.data);
-  }).catch(err => {
-    console.log(err);
-  });
-
+  // instance.get("/net_info", {withCredentials: true}).then(res => {
+  //   console.log(res.data);
+  // }).catch(err => {
+  //   console.log(err);
+  // });
 
   return (
     <Container>
