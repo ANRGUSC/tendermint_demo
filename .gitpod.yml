@@ -1,3 +1,8 @@
 tasks:
   - name: Python Requirements
     command: pip install -r /workspace/tendermint_demo/requirements.txt 
+vscode:
+  extensions:
+    - GitHub.vscode-pull-request-github
+    - ms-python.python
+    - ms-azuretools.vscode-docker
