@@ -1,0 +1,3 @@
+tasks:
+  - name: Python Requirements
+    command: pip install -r /workspace/tendermint_demo/requirements.txt 
