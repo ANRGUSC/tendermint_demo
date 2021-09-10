@@ -4,6 +4,7 @@ import './App.css';
 
 // import Websocket from 'react-websocket';
 // import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -53,12 +54,7 @@ const TendermintWebsocket = (props) => {
 
       try {
         setBlocks([
-          (
-            <div>
-              <b>{data.result.data.value.block.header.height}</b>
-              <p>{data.result.data.value.block.header.last_block_id.hash.slice(0, 5)}</p>
-            </div>
-          ), 
+          data.result.data.value.block,
           ...blocks.slice(0, props.length-1 || 5)]
         );
         setHeight(data.result.data.value.block.header.height);
@@ -73,46 +69,83 @@ const TendermintWebsocket = (props) => {
 
   return (
     <div>
-      <h3>Height: {height}</h3>
       <ListGroup horizontal>
         {blocks.map((block, i) => {
-          return <ListGroupItem key={i}>{block}</ListGroupItem>;
+          // console.log(block);
+          return (
+            <ListGroupItem action key={block.header.height} onClick={() => props.onClick ? props.onClick(block) : null}>
+                <b>Block # {block.header.height}</b>
+                <p>{block.header.consensus_hash.slice(0, 5)}...</p>
+            </ListGroupItem>
+          );
         })}
       </ListGroup>
     </div>
   );
 }
 
+const toTable = (obj) => {
+  return (
+    <Table responsive>
+      <tbody>
+        {Object.entries(obj).filter(([key, value]) => typeof value === 'string').map(([key, value]) => {
+          console.log(key, value);
+          return (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </Table>
+  );
+}
 
 
+const App = (props) => {
+  const [block, setBlock] = useState({});
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+  instance.get("/net_info", {withCredentials: true}).then(res => {
+    console.log(res.data);
+  }).catch(err => {
+    console.log(err);
+  });
 
-    this.state = {
-      block: null
-    }
-  }
 
-  render() {
-    instance.get("/net_info").then(res => {
-      console.log(res.data);
-    });
-
-    return (
-      <Container>
-        <Row>
-          <Col><h1>Blockchain Visualizer</h1></Col>
-        </Row>
-        <Row>
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <h1>Blockchain Visualizer</h1>
+          If the page doesn't load properly try clicking <a href={`https://${ENDPOINT}`}>here</a> and coming back
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col>
+          <TendermintWebsocket length={5} onClick={setBlock} /> 
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        {block.header === undefined ?  null : (
           <Col>
-            <TendermintWebsocket length={10} /> 
+            <h3>Block {block.header.height}</h3>
+            {toTable(block.header)}
+            {
+              block.last_commit.signatures.map((validator, i) => {
+                return (
+                  <div key={`validator-${i}`}>
+                    <h5>Validator {i+1}</h5>
+                    {toTable(validator)}
+                  </div>
+                );
+              })
+            }
           </Col>
-        </Row>
-      </Container>
-    );
-  }
+        )}
+      </Row>
+    </Container>
+  );
 }
 
 export default App;
