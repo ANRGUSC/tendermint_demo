@@ -15,7 +15,9 @@ import React, { useState } from 'react';
 
 import useWebSocket from 'react-use-websocket';
 
-const ENDPOINT = `${process.env.REACT_APP_CODESPACE_NAME}-26657.githubpreview.dev`;
+const ENDPOINT = process.env.REACT_APP_CODESPACE_NAME ? `${process.env.REACT_APP_CODESPACE_NAME}-26657.githubpreview.dev` : (
+  process.env.REACT_APP_GITPOD_WORKSPACE_URL ? process.env.REACT_APP_GITPOD_WORKSPACE_URL.replace("https://", "26657-") : "localhost:26657"
+);
 const instance = axios.create({
   baseURL: `https://${ENDPOINT}`,
   // timeout: 1000,
@@ -24,6 +26,7 @@ const instance = axios.create({
 });
 
 const WS_ENDPOINT = `wss://${ENDPOINT}/websocket`;
+console.log(process.env.REACT_APP_GITPOD_WORKSPACE_URL.replace("https://", "26657-"));
 
 
 const TendermintWebsocket = (props) => {
