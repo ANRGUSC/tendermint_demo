@@ -5,8 +5,8 @@ Open with Codespaces or in VSCode on your PC!
 ## Setting up VSCode
 1. Make sure you have [VSCode](https://code.visualstudio.com/) and [Docker](https://docs.docker.com/get-docker/) installed
 1. Install the following extensions
-  - Remote Development
-  - Docker 
+    - Remote Development
+    - Docker 
 
 Then, to open in the developer environment, clone the repository:
 ```bash
