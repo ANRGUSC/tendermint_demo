@@ -88,7 +88,7 @@ class SimpleCounter(BaseApplication):
             if len(self.data.get(key, {"value": ""})["value"]) >= len(value):
                 return ResponseDeliverTx(
                     code=ErrorCode, 
-                    log="New keys must be longer than the existing key"
+                    log="New values must be longer than the existing value"
                 )
             self.data[key] = {
                 "value": value,

@@ -1,0 +1,6 @@
+{
+    "redhat.telemetry.enabled": true,
+    "git.autofetch": true,
+    "window.autoDetectColorScheme": true,
+    "workbench.colorTheme": "Default Dark+"
+}

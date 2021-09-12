@@ -37,7 +37,7 @@ python app/app.py
 ```
 
 Then you can use the Tendermint RPC API to interact with tendermint (and our application _through_ tendermint).
-```app.client.py``` is a convenience CLI to send/receive data to our application.
+```app/client.py``` is a convenience CLI to send/receive data to our application.
 Try running the following commands:
 ```bash
 python client.py get hello
