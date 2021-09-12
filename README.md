@@ -36,19 +36,19 @@ Then, in a new terminal, start the ABCI application (our application logic):
 python app/app.py 
 ```
 
-Then you can use the Tendermint RPC API to interact with tendermint (and our application _through_ tendermint).
+Then you can use the [Tendermint RPC API](https://docs.tendermint.com/master/rpc/#/) to interact with tendermint (and our application _through_ tendermint).
 ```app/client.py``` is a convenience CLI to send/receive data to our application.
 Try running the following commands:
 ```bash
-python client.py get hello
-python client.py set hello world
-python client.py get hello
+python app/client.py get hello
+python app/client.py set hello world
+python app/client.py get hello
 
-python client.py set hello toast    # rejected - new values for a key must be longer than old values
-python client.py get hello
+python app/client.py set hello toast    # rejected - new values for a key must be longer than old values
+python app/client.py get hello
 
-python client.py set hello toast!
-python client.py get hello
+python app/client.py set hello toast!
+python app/client.py get hello
 ```
 
 Finally, we have a small GUI to visualize the blockchain, run:
