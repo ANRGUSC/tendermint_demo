@@ -1,6 +1,14 @@
 # Tendermint Demo
 
-Open with:
+This tutorial demo starts up a simple instance of Tendermint consensus (single node, just for illustration). 
+The ABCI application (smart contract in Tendermint terms) is a simple key-value store which, through transactions, allows clients to set and get the value for keys with the restriction that any new value set must be a longer string than the current value for a given key. 
+Transactions are sent via the [Tendermint RPC API](https://docs.tendermint.com/master/rpc/) by an off-chain client application.
+Both the ABCI application and the client are written in Python. 
+The demo also includes a simple blockchain viewer written in JavaScript that allows the user to visualize all transactions and blocks.
+
+![image](https://user-images.githubusercontent.com/15845210/133292079-6358ade7-0a12-40b9-bb2b-7ab5ce666ee8.png)
+
+**Open with**:
 - [Gitpod, by clicking here](https://gitpod.io/#https://github.com/ANRGUSC/tendermint_demo) (recommended)
 - Codespaces (see the "Code" button above)
 - VSCode on your PC (see next section)
