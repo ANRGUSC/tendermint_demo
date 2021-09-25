@@ -8,31 +8,9 @@ The demo also includes a simple blockchain viewer written in JavaScript that all
 
 ![image](https://user-images.githubusercontent.com/15845210/133292079-6358ade7-0a12-40b9-bb2b-7ab5ce666ee8.png)
 
-**Open with**:
-- [Gitpod, by clicking here](https://gitpod.io/#https://github.com/ANRGUSC/tendermint_demo) (recommended)
-- Codespaces (see the "Code" button above)
-- VSCode on your PC (see next section)
+## Running The Demo
+[![Open In Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ANRGUSC/tendermint_demo)
 
-## Running on VSCode Desktop (Skip this section if you're using codespaces or gitpod)
-1. Make sure you have [VSCode](https://code.visualstudio.com/) and [Docker](https://docs.docker.com/get-docker/) installed
-1. Install the following extensions
-    - Remote Development
-    - Docker 
-
-Then, to open in the developer environment, clone the repository:
-```bash
-git clone git@github.com:ANRGUSC/tendermint_demo.git
-```
-
-Open it in code:
-```
-code ./tendermint_demo
-```
-
-Click the green button in the bottom-left-hand corner of your IDE to access the remote-tools options and select "Reopen in Container".
-The first time it make take a while to open, but next time it should be fast!
-
-## Running Demo
 First, open a terminal and run 
 ```bash
 python app/restart_tm_node.py 
